@@ -1,0 +1,6 @@
+{
+  "name": "My Protein",
+  "description": "A responsive online fitness supplement store featuring bilingual English and Myanmar support, product category filtering, and a floating Messenger contact button.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
