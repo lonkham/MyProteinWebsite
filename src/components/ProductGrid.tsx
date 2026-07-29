@@ -25,13 +25,15 @@ export default function ProductGrid({ lang, t, formatPrice, products }: ProductG
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 12;
 
-  const categories = ["All", "Protein Powder", "Creatine", "Supplement", "Accessories"];
+  const categories = ["All", "Protein Powder", "Creatine", "Pre-Workout", "Fat-Burner", "Supplement", "Accessories"];
 
   const getCategoryLabel = (category: string) => {
     switch (category) {
       case "All": return t.all;
       case "Protein Powder": return t.protein;
       case "Creatine": return t.creatine;
+      case "Pre-Workout": return t.preWorkout;
+      case "Fat-Burner": return t.fatBurner;
       case "Supplement": return t.supplement;
       case "Accessories": return t.accessories;
       default: return category;
@@ -102,7 +104,7 @@ export default function ProductGrid({ lang, t, formatPrice, products }: ProductG
       {/* Product Grid Layout */}
       <motion.div 
         layout 
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8"
+        className="grid grid-cols-2 gap-3 sm:gap-6 md:gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
       >
         <AnimatePresence mode="popLayout">
           {paginatedProducts.map((p: Product) => {
@@ -122,7 +124,7 @@ export default function ProductGrid({ lang, t, formatPrice, products }: ProductG
               >
                 <Link
                   to={`/product/${p.id}`}
-                  className="group bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-slate-200/80 transition-all duration-300 flex flex-col justify-between h-full shadow-sm hover:shadow-md cursor-pointer"
+                  className="group bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-slate-100 hover:border-slate-200/80 transition-all duration-300 flex flex-col justify-between h-full shadow-sm hover:shadow-md cursor-pointer"
                 >
                   {/* Image Holder */}
                   <div className="relative aspect-square overflow-hidden bg-slate-50">
@@ -134,15 +136,15 @@ export default function ProductGrid({ lang, t, formatPrice, products }: ProductG
                     />
 
                     {/* Stock Status Badge */}
-                    <div className="absolute top-3 left-3">
+                    <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
                       {p.inStock ? (
-                        <span className="inline-flex items-center gap-1 bg-emerald-500 text-white font-bold text-[10px] sm:text-xs px-2.5 py-1.5 rounded-lg shadow-sm uppercase tracking-wider">
-                          <CheckCircle2 className="w-3.5 h-3.5" />
+                        <span className="inline-flex items-center gap-1 bg-emerald-500 text-white font-bold text-[9px] sm:text-xs px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-md sm:rounded-lg shadow-sm uppercase tracking-wider">
+                          <CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                           {t.inStock}
                         </span>
                       ) : (
-                        <span className="inline-flex items-center gap-1 bg-rose-500 text-white font-bold text-[10px] sm:text-xs px-2.5 py-1.5 rounded-lg shadow-sm uppercase tracking-wider">
-                          <AlertTriangle className="w-3.5 h-3.5" />
+                        <span className="inline-flex items-center gap-1 bg-rose-500 text-white font-bold text-[9px] sm:text-xs px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-md sm:rounded-lg shadow-sm uppercase tracking-wider">
+                          <AlertTriangle className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                           {t.outOfStock}
                         </span>
                       )}
@@ -150,18 +152,18 @@ export default function ProductGrid({ lang, t, formatPrice, products }: ProductG
                   </div>
 
                   {/* Core Details (STRICTLY name, price, stock badge) */}
-                  <div className="p-5 flex-grow flex flex-col justify-between">
+                  <div className="p-3 sm:p-4 md:p-5 flex-grow flex flex-col justify-between">
                     <div>
-                      <h3 className="font-display font-bold text-slate-800 text-sm sm:text-base leading-snug group-hover:text-brand-500 transition-colors duration-200 line-clamp-2 h-10 sm:h-12">
+                      <h3 className="font-display font-bold text-slate-800 text-xs sm:text-sm md:text-base leading-snug group-hover:text-brand-500 transition-colors duration-200 line-clamp-2 h-8 sm:h-10 md:h-12">
                         {productName}
                       </h3>
                     </div>
 
-                    <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
-                      <span className="text-slate-400 text-[10px] sm:text-xs font-semibold uppercase tracking-wider">
+                    <div className="mt-2 sm:mt-4 pt-2 sm:pt-4 border-t border-slate-100 flex items-center justify-between">
+                      <span className="text-slate-400 text-[9px] sm:text-[10px] md:text-xs font-semibold uppercase tracking-wider">
                         {t.priceLabel}
                       </span>
-                      <span className="font-display font-black text-brand-500 text-base sm:text-lg">
+                      <span className="font-display font-black text-brand-500 text-xs sm:text-base md:text-lg">
                         {formattedPrice}
                       </span>
                     </div>
