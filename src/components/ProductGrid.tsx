@@ -25,12 +25,14 @@ export default function ProductGrid({ lang, t, formatPrice, products }: ProductG
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 12;
 
-  const categories = ["All", "Protein Powder", "Creatine", "Pre-Workout", "Fat-Burner", "Supplement", "Accessories"];
+  const categories = ["All", "Protein Powder", "Mass Gainer", "Amino Acids", "Creatine", "Pre-Workout", "Fat-Burner", "Supplement", "Accessories"];
 
   const getCategoryLabel = (category: string) => {
     switch (category) {
       case "All": return t.all;
       case "Protein Powder": return t.protein;
+      case "Mass Gainer": return t.massGainer;
+      case "Amino Acids": return t.aminoAcids;
       case "Creatine": return t.creatine;
       case "Pre-Workout": return t.preWorkout;
       case "Fat-Burner": return t.fatBurner;
